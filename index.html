@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body>    
-    <div id="reactDiv">
-        This should change to show Date
-    </div>
+<body>
+  <div id="reactDiv"></div>
 
-
-<script type="text/babel">
- let rootNode = ReactDOM.createRoot(reactDiv);
-    let fun = () => {
-        let myStr  = "<div> <h1>Date Time</h1> <input/> <p>"+(new Date())+ "</p></div>";
-        document.getElementById('reactDiv').innerHTML = myStr;
-       
-        let MyDiv =  <div>
-                        <h1> Date Time again </h1>
-                        <input/><br/>
-                        { (new Date()).toString()}
-                     </div>
-        rootNode.render(MyDiv);
+  <script type="text/babel">
+    function Clock() {
+      return (
+        <div>
+          <h1>Date Time</h1>
+          <input />
+          <p>{new Date().toString()}</p>
+        </div>
+      );
     }
-    setInterval(fun,1000)
-</script>
+    const rootNode = ReactDOM.createRoot(document.getElementById('reactDiv'));
+    rootNode.render(<Clock />);
 
-
+    setInterval(() => {
+      rootNode.render(<Clock />);
+    }, 1000);
+  </script>
 </body>
 </html>
